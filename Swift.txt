@@ -1,0 +1,106 @@
+typealias int = Int
+print("///////Overloading example/////////")
+
+func add(number:String) 
+{
+	let result = number + number
+	print("The int value is \(result)")
+}
+
+func add(number:Int) 
+{
+	let result = number + number
+    print("The int value is \(result)")
+}
+
+add(number:2)
+add(number:"two")
+
+print("/////////Default parameter value//////////")
+
+func shoot(_ s:String, times:Int = 3)
+{
+	for _ in 1...times 
+	{
+		print(s)
+	}
+}
+
+shoot("bang")
+
+print("//////////Variadic example////////////")
+func storeString(_ storageForStrings:String ...) 
+{
+
+		print(storageForStrings)
+
+}
+
+storeString("hello","world","!")
+
+print("///////////Ignored Parameters example/////////")
+func letsTalkAbout(_ s:String, times:Int,_ reality:Bool)
+{
+	print("\(s) , \(times) , \(reality)")
+}
+
+
+func letsTalkAbout2(_ s:String, times:Int, reality:Bool)
+{
+	print("\(s) , \(times) , \(reality)")
+}
+
+letsTalkAbout("Animals" , times:3 , true)
+letsTalkAbout2("Animals" , times:3 , reality:true)
+
+
+
+print("/////////Function inside a function//////////")
+
+func calculator(_ addition: Bool) -> (Int, Int) ->(Int)
+{
+	func add(_ a: Int, _ b: Int) -> Int {
+        return a + b
+    }
+ 
+    func subtract(_ a: Int, _ b: Int) -> Int {
+        return a - b
+    }
+	if addition {
+        return add
+    } else {
+        return subtract
+    }
+}
+let calculateFunction = calculator(true)
+let result = calculateFunction(3, 1)
+print(result)
+
+print("/////////Recursion example//////////")
+func multiplyUntilReachFiftyOne(_ ix:Int) {
+ print(ix)
+ if ix < 50  { // stopper
+	 
+		 multiplyUntilReachFiftyOne(ix+2) 
+		
+ }
+}
+
+multiplyUntilReachFiftyOne(17)
+
+print("//////////Pass function as a value to another function////////")
+func letsDoWhatISayToYou(_ f:()->()) {
+ f()
+}
+func sayHelloWorld() {
+ print("Hello World!")
+}
+letsDoWhatISayToYou(sayHelloWorld)
+
+print("///////////// Typealias example //////////////")
+func addOpp(_ a: int,_ b:int)
+{
+	let c = a + b
+	print("\(c)")
+}
+addOpp(3,7)
